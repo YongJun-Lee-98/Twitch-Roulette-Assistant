@@ -1,1 +1,10 @@
-# Twitch-Roulette-Assistant
+## Twitch-Roulette-Assistant
+[스트리머 전용]
+트위치 10연차 뽑기 등 csv파일을 분류하는 코드입니다.
+
+update 내용 2.0
+csv파일을 여러개 선택할 수 있도록 만들어졌습니다.
+
+뽑은 사람의 ID가 결과의 시트 이름으로 나오게 되며
+[ID] - [닉네임] - [뽑기 결과] - [개수]
+형태로 시트가 구성되어 있습니다.
