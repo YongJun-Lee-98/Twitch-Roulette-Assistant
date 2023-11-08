@@ -1,5 +1,6 @@
-import csv_processor
 from multiprocessing import Pool
+import csv_processor
+import multiprocessing
 
 # 각 CSV 파일에 대한 처리를 병렬로 실행할 함수
 def process_csv_file(csv_path):
@@ -10,17 +11,12 @@ def process_csv_file(csv_path):
     csv_processor.ExcelGenerator.generate_excel(result, csv_path)
 
 def main():
-    csv_paths = csv_processor.FileSelector.select_csv_files()
-    pool = Pool()  # 프로세스 풀을 사용하여 작업을 분산합니다.
-    pool.map(process_csv_file, csv_paths)  # 병렬 처리를 시작합니다.
-    pool.close()  # 병렬 처리가 끝나면 풀을 닫습니다.
-    pool.join()  # 모든 프로세스가 끝날 때까지 기다립니다.
+    with Pool(processes=4) as pool:
+        csv_paths = csv_processor.FileSelector.select_csv_files()
+        pool.map(process_csv_file, csv_paths)  # 병렬 처리를 시작합니다.
+        pool.close()  # 병렬 처리가 끝나면 풀을 닫습니다.
+        pool.join()  # 모든 프로세스가 끝날 때까지 기다립니다.
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()
-
-
-
-
-
-
