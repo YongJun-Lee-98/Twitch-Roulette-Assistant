@@ -4,12 +4,14 @@ import os
 class ExcelGenerator:
     @staticmethod
     def generate_excel(result, csv_path):
+        
         """결과 데이터를 바탕으로 같은 이름의 CSV 파일명으로 엑셀 파일을 생성합니다.
 
         Args:
             result (DataFrame): 'Account', 'Name', 'Message', 'Count' 열을 포함한 pandas DataFrame.
             csv_path (str): 원본 CSV 파일의 경로.
         """
+        
         # 파일 경로에서 순수 파일 이름만 추출 (확장자 제외)
         base_name = os.path.basename(csv_path)
         file_name, _ = os.path.splitext(base_name)
