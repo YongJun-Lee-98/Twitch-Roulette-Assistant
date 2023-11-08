@@ -12,4 +12,4 @@ update 2.0
 + multiprocessing을 통해 하나씩 처리하던 것을 동시에 처리할 수 있도록 수정했습니다.
 
 update 2.1
-multiprocessing bug fix
++ multiprocessing bug fix
