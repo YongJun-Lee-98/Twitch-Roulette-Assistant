@@ -21,6 +21,7 @@ def process_csv_file(csv_path):
         log_message.error(f"Error with file {csv_path}: {e}")
 
 def main():
+    print("프로그램이 실행 중입니다.")
     log_message.info("Main process started.")
     with Pool(processes=4) as pool:
         csv_paths = csv_processor.FileSelector.select_csv_files()
