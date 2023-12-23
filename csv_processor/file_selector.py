@@ -5,7 +5,6 @@ class FileSelector:
     @staticmethod
     def select_csv_files():
         """파일 선택 대화상자를 표시하고 선택된 CSV 파일들의 경로를 반환합니다.
-
         Returns:
             list: 선택된 파일들의 경로 목록.
         """
