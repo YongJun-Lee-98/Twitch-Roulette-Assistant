@@ -4,7 +4,6 @@ import os
 class ExcelGenerator:
     @staticmethod
     def generate_excel(result, csv_path):
-        
         """결과 데이터를 바탕으로 같은 이름의 CSV 파일명으로 엑셀 파일을 생성합니다.
 
         Args:
@@ -18,15 +17,16 @@ class ExcelGenerator:
 
         # 추출한 파일 이름으로 Excel 파일명 생성
         excel_file = f'{file_name}.xlsx'
-        writer = pd.ExcelWriter(excel_file)
+        writer = pd.ExcelWriter(excel_file, engine='xlsxwriter')
 
         account_list = result[' Account'].unique()
         for account in account_list:
+            # 유효하지 않은 문자를 제거하거나 대체
+            valid_sheet_name = account[:31].replace(':', '').replace('\\', '').replace('/', '').replace('?', '').replace('*', '').replace('[', '').replace(']', '')
             df_account = result[result[' Account'] == account]
             df_account.set_index([' Account', ' Name'], inplace=True)
-            df_account.to_excel(writer, sheet_name=account)
+            df_account.to_excel(writer, sheet_name=valid_sheet_name)
 
         # 엑셀 파일 저장
-        writer._save()
+        writer.close()
         print(f'Excel 파일이 저장되었습니다: {excel_file}')
-
